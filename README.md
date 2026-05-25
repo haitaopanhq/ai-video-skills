@@ -16,6 +16,7 @@
 | AI 信息差快报 | 新闻检索、素材匹配、口播字幕、视频渲染 | `skills/ai-tech-news-video/SKILL.md` |
 | IT 基础设施连续 PNG | 根据描述或参考图生成 1-N 张连续风格竖版 PNG 素材 | `skills/it-infra-continuous-png/SKILL.md` |
 | IT 基础设施长图讲解视频 | 基于长图素材生成 HyperFrames 讲解视频、口播、字幕和 timeline | `skills/it-infra-evolution-video/SKILL.md` |
+| IT 基础设施长图讲解视频 v2 | 从 PNG manifest 强制生成配置、HTML、音频、验收和 MP4 | `skills/it-infra-evolution-video-v2/SKILL.md` |
 | 产品介绍视频 | 官网信息提炼、叙事结构、成片节奏 | `skills/product-intro-video/SKILL.md` |
 | 视频音效工作流 | 音效搜索、下载与合成、时间线接入 | `skills/sound-fx-for-video/SKILL.md` |
 | 简笔画动画视频 | 线稿风 + 短画面字；**主动网络搜参考图临摹**；逼真非抽象；GSAP 主时间线 + 可选 Anime.js；抽检闭环 | `skills/sketch-animation-video/SKILL.md` |
@@ -49,6 +50,25 @@
 1. 进入对应 Skill 目录并阅读 `SKILL.md`
 2. 按文档准备素材、音频与脚本
 3. 在项目中执行渲染与抽检流程
+
+### IT 基础设施 PNG -> 视频闭环
+
+当一个任务同时需要 `it-infra-continuous-png` 和 `it-infra-evolution-video` 时，优先使用 v2 链路：
+
+1. `it-infra-continuous-png` 先输出 `assets/images/*.png` 和 `assets/images/manifest.md`
+2. `it-infra-evolution-video-v2` 读取 manifest，并调用 `scripts/build_it_infra_video.py`
+3. 任务目录中必须留下 `video.config.json`、`index.html`、`renders/*.mp4`、`ffprobe.json`
+
+示例：
+
+```bash
+python3 scripts/build_it_infra_video.py \
+  --project-dir /path/to/task/service-mesh-video \
+  --title "云原生 Service Mesh 网络科普视频" \
+  --audio-mode edge-tts \
+  --run-acceptance \
+  --output-name service-mesh-video.mp4
+```
 
 ## 账号信息
 

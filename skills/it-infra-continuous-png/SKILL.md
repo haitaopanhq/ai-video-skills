@@ -81,6 +81,23 @@ description: "生成 IT 基础设施系列连续风格 PNG 图片。适用于一
 
 `it-infra-evolution-video` 不应重新发明这些图片的风格，只读取 manifest 并作为真实长图素材使用。
 
+当任务还选择了 `it-infra-evolution-video-v2` 时，本 skill 完成后必须停在清晰的交接点：
+
+1. 确认 `assets/images/*.png` 的数量与 manifest 数据行数量一致。
+2. 确认每个 `file` 指向真实 PNG 文件，而不是 SVG、空文件或占位路径。
+3. 将下一步命令写给视频 skill：
+
+```bash
+python3 /path/to/ai-video-skills/scripts/build_it_infra_video.py \
+  --project-dir . \
+  --title "<用户主题>" \
+  --audio-mode edge-tts \
+  --run-acceptance \
+  --output-name "<topic-slug>.mp4"
+```
+
+不要在本 skill 中生成 `index.html`、`video.config.json` 或 MP4；这些是视频 skill 的职责。
+
 ## 参考文件
 
 - 风格规范：`references/style-spec.md`
