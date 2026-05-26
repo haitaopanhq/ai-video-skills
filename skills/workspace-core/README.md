@@ -1,15 +1,15 @@
-# workspace-core-skills
+# Workspace Core Skills
 
 Workspace core skills synchronized from the `ubuntu` user runtime on `root@openclaw.svc.plus`.
 
-This directory is intentionally separate from the repository's existing `skills/` directory. The existing `skills/` directory remains the source-owned AI video/content skill set. `workspace-core-skills/` is a runtime-core bundle for OpenClaw/Codex workspace support skills that were present remotely but were not first-class local repository skill directories.
+This category is intentionally separate from the repository's source-owned content production skills. Runtime skills live under this category only.
 
 ## Sources
 
 | Source | Remote path | Local path | Acquisition path |
 |---|---|---|---|
-| OpenClaw workspace | `/home/ubuntu/.openclaw/workspace/skills` | `workspace-core-skills/skills/openclaw` | Runtime workspace skills installed through OpenClaw/Clawhub or workspace bootstrap |
-| Codex system | `/home/ubuntu/.codex/skills/.system` | `workspace-core-skills/skills/codex-system` | Bundled Codex system skills, normally provided by `npx codex` / Codex runtime |
+| OpenClaw workspace | `/home/ubuntu/.openclaw/workspace/skills` | `skills/workspace-core/openclaw` | Runtime workspace skills installed through OpenClaw/Clawhub or workspace bootstrap |
+| Codex system | `/home/ubuntu/.codex/skills/.system` | `skills/workspace-core/codex-system` | Bundled Codex system skills, normally provided by `npx codex` / Codex runtime |
 
 Excluded source:
 
@@ -58,16 +58,10 @@ Run from the repository root:
 ```bash
 ssh root@openclaw.svc.plus 'cd /tmp && rm -rf workspace-core-skills-sync && mkdir -p workspace-core-skills-sync/openclaw workspace-core-skills-sync/codex-system && for d in browser-automation cron-helper excel-xlsx find-skills-skill hermes-learning-loop image-cog image-resizer pdf powerpoint-pptx qmd remote-desktop self-improving skylv-hermes-agent-integration tiangong-notebooklm-cli video-translator virtual-remote-desktop wan-image-video-generation-editting web-search word-docx; do cp -a /home/ubuntu/.openclaw/workspace/skills/$d workspace-core-skills-sync/openclaw/; done && for d in imagegen openai-docs plugin-creator skill-creator skill-installer; do cp -a /home/ubuntu/.codex/skills/.system/$d workspace-core-skills-sync/codex-system/; done && tar -czf /tmp/workspace-core-skills-sync.tar.gz -C /tmp workspace-core-skills-sync'
 scp root@openclaw.svc.plus:/tmp/workspace-core-skills-sync.tar.gz /tmp/workspace-core-skills-sync.tar.gz
-mkdir -p workspace-core-skills/skills
 tar -xzf /tmp/workspace-core-skills-sync.tar.gz -C /tmp
-rm -rf workspace-core-skills/skills/openclaw workspace-core-skills/skills/codex-system
-mv /tmp/workspace-core-skills-sync/openclaw workspace-core-skills/skills/openclaw
-mv /tmp/workspace-core-skills-sync/codex-system workspace-core-skills/skills/codex-system
+rm -rf skills/workspace-core/openclaw skills/workspace-core/codex-system
+mv /tmp/workspace-core-skills-sync/openclaw skills/workspace-core/openclaw
+mv /tmp/workspace-core-skills-sync/codex-system skills/workspace-core/codex-system
 rm -rf /tmp/workspace-core-skills-sync /tmp/workspace-core-skills-sync.tar.gz
 ssh root@openclaw.svc.plus 'rm -f /tmp/workspace-core-skills-sync.tar.gz'
 ```
-
-## Notes
-
-- Do not merge these directories into the top-level `skills/` tree unless they become source-owned by this repository.
-- Keep source attribution in this README current when refreshing from a different host, user, or runtime installation path.

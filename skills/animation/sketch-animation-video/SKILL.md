@@ -41,10 +41,10 @@ disable-model-invocation: true
 |---|---|
 | 整段场景编排、多元素错峰、对照叙事 | **GSAP** |
 | 单个 SVG/DOM 点缀、弹性/旋转/描边等短动效 | **Anime.js** |
-| 用户指定 Anime.js 或提供 Anime.js 示例 | **Anime.js**（按 `skills/animejs/SKILL.md` 改造为 seek 驱动） |
+| 用户指定 Anime.js 或提供 Anime.js 示例 | **Anime.js**（按 `skills/animation/animejs/SKILL.md` 改造为 seek 驱动） |
 | 同一片段既要编排又要点缀 | GSAP 管主链，Anime.js 管局部；避免同一 `transform` 被两套库同时写 |
 
-Anime.js 接入细则见同仓库 **`skills/animejs/SKILL.md`**（`autoplay: false`、`window.__hfAnime` 注册、有限时长）。
+Anime.js 接入细则见同仓库 **`skills/animation/animejs/SKILL.md`**（`autoplay: false`、`window.__hfAnime` 注册、有限时长）。
 
 ---
 
@@ -130,7 +130,7 @@ Anime.js 接入细则见同仓库 **`skills/animejs/SKILL.md`**（`autoplay: fal
 
 ### E. Anime.js 与 HyperFrames 适配
 
-仅在需要时使用 Anime.js，并遵守以下约定（详见 `skills/animejs/SKILL.md`）：
+仅在需要时使用 Anime.js，并遵守以下约定（详见 `skills/animation/animejs/SKILL.md`）：
 
 - 初始化阶段**同步**创建动画，设置 `autoplay: false`
 - 将每个实例 `push` 到 `window.__hfAnime`
@@ -223,4 +223,3 @@ Anime.js 接入细则见同仓库 **`skills/animejs/SKILL.md`**（`autoplay: fal
 先完成静态 Hero Frame，再补入场、传递、激活、收尾四段动效。  
 必须保证：无越界、无遮挡、无空选择器报错、可通过 `check`；**含默认短画面字**；具象造型经**网络参考图临摹**，逼真优先、非默认抽象。  
 最终输出 MP4，并附上“问题 -> 修复 -> 成片路径 -> 是否通过抽检”的汇报。」  
-

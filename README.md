@@ -2,12 +2,16 @@
 
 一套面向 XWorkmate / OpenClaw / Codex workspace 的核心 Skill 集合。
 
-本仓库现在包含两类技能：
+本仓库现在使用单一 `skills/` 入口，下面按能力域分类：
 
-- `skills/`：原有 source-owned AI 视频与内容生产技能，保持目录不变。
-- `workspace-core-skills/`：从 `root@openclaw.svc.plus` 的 `ubuntu` 用户 OpenClaw/Codex runtime 同步回来的 workspace core skills。
+- `skills/content-planning/`：选题拆解、图文连载和内容排期。
+- `skills/video-production/`：AI 新闻、产品介绍和 IT 基础设施讲解视频生产。
+- `skills/image-production/`：连续风格 PNG / 信息图素材生成。
+- `skills/audio-production/`：视频音效、BGM 和音频素材工作流。
+- `skills/animation/`：HyperFrames 动效、简笔画动画和 Anime.js 适配。
+- `skills/workspace-core/`：从 OpenClaw/Codex runtime 同步回来的 workspace core skills。
 
-其中 `skills/` 仍是一套面向 **AI 视频自动化创作** 的实战 Skill 集合，基于 `HyperFrames` 工作流，目标是把“想法 -> 脚本 -> 画面 -> 音频 -> 成片”的流程沉淀成可复用方法。
+其中 source-owned 内容生产技能基于 `HyperFrames` 工作流，目标是把“想法 -> 脚本 -> 画面 -> 音频 -> 成片”的流程沉淀成可复用方法。Workspace core skills 只作为 runtime 辅助技能归档，不与内容生产技能混放。
 
 ## 适合谁用
 
@@ -19,24 +23,25 @@
 
 | Skill | 说明 | 路径 |
 |---|---|---|
-| AI 信息差快报 | 新闻检索、素材匹配、口播字幕、视频渲染 | `skills/ai-tech-news-video/SKILL.md` |
-| IT 基础设施连续 PNG | 根据描述或参考图生成 1-N 张连续风格竖版 PNG 素材 | `skills/it-infra-continuous-png/SKILL.md` |
-| IT 基础设施长图讲解视频 | 基于长图素材生成 HyperFrames 讲解视频、口播、字幕和 timeline | `skills/it-infra-evolution-video/SKILL.md` |
-| IT 基础设施长图讲解视频 v2 | 从 PNG manifest 强制生成配置、HTML、音频、验收和 MP4 | `skills/it-infra-evolution-video-v2/SKILL.md` |
-| 产品介绍视频 | 官网信息提炼、叙事结构、成片节奏 | `skills/product-intro-video/SKILL.md` |
-| 视频音效工作流 | 音效搜索、下载与合成、时间线接入 | `skills/sound-fx-for-video/SKILL.md` |
-| 简笔画动画视频 | 线稿风 + 短画面字；**主动网络搜参考图临摹**；逼真非抽象；GSAP 主时间线 + 可选 Anime.js；抽检闭环 | `skills/sketch-animation-video/SKILL.md` |
-| Anime.js（HyperFrames） | seek 驱动适配、`window.__hfAnime` 注册、与 GSAP 分工 | `skills/animejs/SKILL.md` |
+| 选题拆解与图文连载 | 系列主题拆分、排期、图文提示词和内容规划 | `skills/content-planning/content_series_infographic/SKILL.md` |
+| AI 信息差快报 | 新闻检索、素材匹配、口播字幕、视频渲染 | `skills/video-production/ai-tech-news-video/SKILL.md` |
+| IT 基础设施长图讲解视频 | 基于长图素材生成 HyperFrames 讲解视频、口播、字幕和 timeline | `skills/video-production/it-infra-evolution-video/SKILL.md` |
+| IT 基础设施长图讲解视频 v2 | 从 PNG manifest 强制生成配置、HTML、音频、验收和 MP4 | `skills/video-production/it-infra-evolution-video-v2/SKILL.md` |
+| 产品介绍视频 | 官网信息提炼、叙事结构、成片节奏 | `skills/video-production/product-intro-video/SKILL.md` |
+| IT 基础设施连续 PNG | 根据描述或参考图生成 1-N 张连续风格竖版 PNG 素材 | `skills/image-production/it-infra-continuous-png/SKILL.md` |
+| 视频音效工作流 | 音效搜索、下载与合成、时间线接入 | `skills/audio-production/sound-fx-for-video/SKILL.md` |
+| 简笔画动画视频 | 线稿风 + 短画面字；**主动网络搜参考图临摹**；逼真非抽象；GSAP 主时间线 + 可选 Anime.js；抽检闭环 | `skills/animation/sketch-animation-video/SKILL.md` |
+| Anime.js（HyperFrames） | seek 驱动适配、`window.__hfAnime` 注册、与 GSAP 分工 | `skills/animation/animejs/SKILL.md` |
 
 ## Workspace Core Skills
 
-`workspace-core-skills/` 保存从 OpenClaw/Codex workspace runtime 同步回来的核心辅助技能。
+`skills/workspace-core/` 保存从 OpenClaw/Codex workspace runtime 同步回来的核心辅助技能。
 
-- OpenClaw workspace 来源：`/home/ubuntu/.openclaw/workspace/skills`，通常由 OpenClaw/Clawhub 或 workspace bootstrap 安装。
-- Codex system 来源：`/home/ubuntu/.codex/skills/.system`，通常由 `npx codex` / Codex runtime 提供。
-- 现有 `skills/` 目录保持为本仓库 source-owned 的视频与内容技能，不混入 workspace runtime 辅助技能。
+- OpenClaw workspace 来源：`/home/ubuntu/.openclaw/workspace/skills`，本地路径为 `skills/workspace-core/openclaw/`。
+- Codex system 来源：`/home/ubuntu/.codex/skills/.system`，本地路径为 `skills/workspace-core/codex-system/`。
+- `/home/ubuntu/.agents/skills` 不纳入本仓库；它是更宽泛的用户/市场技能库，不属于 workspace core surface。
 
-详见：`workspace-core-skills/README.md`
+刷新时保留 `skills/workspace-core/openclaw/` 和 `skills/workspace-core/codex-system/` 两个来源边界。
 
 ## Examples
 
