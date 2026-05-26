@@ -1,7 +1,13 @@
-# AI Video Skills
+# XWorkspace Core Skills
 
-一套面向 **AI 视频自动化创作** 的实战 Skill 集合，基于 `HyperFrames` 工作流。  
-目标是把“想法 -> 脚本 -> 画面 -> 音频 -> 成片”的流程沉淀成可复用方法。
+一套面向 XWorkmate / OpenClaw / Codex workspace 的核心 Skill 集合。
+
+本仓库现在包含两类技能：
+
+- `skills/`：原有 source-owned AI 视频与内容生产技能，保持目录不变。
+- `xworkspace-core-skills/`：从 `root@openclaw.svc.plus` 的 `ubuntu` 用户 OpenClaw/Codex runtime 同步回来的 workspace core skills。
+
+其中 `skills/` 仍是一套面向 **AI 视频自动化创作** 的实战 Skill 集合，基于 `HyperFrames` 工作流，目标是把“想法 -> 脚本 -> 画面 -> 音频 -> 成片”的流程沉淀成可复用方法。
 
 ## 适合谁用
 
@@ -21,6 +27,16 @@
 | 视频音效工作流 | 音效搜索、下载与合成、时间线接入 | `skills/sound-fx-for-video/SKILL.md` |
 | 简笔画动画视频 | 线稿风 + 短画面字；**主动网络搜参考图临摹**；逼真非抽象；GSAP 主时间线 + 可选 Anime.js；抽检闭环 | `skills/sketch-animation-video/SKILL.md` |
 | Anime.js（HyperFrames） | seek 驱动适配、`window.__hfAnime` 注册、与 GSAP 分工 | `skills/animejs/SKILL.md` |
+
+## Workspace Core Skills
+
+`xworkspace-core-skills/` 保存从 OpenClaw/Codex workspace runtime 同步回来的核心辅助技能。
+
+- OpenClaw workspace 来源：`/home/ubuntu/.openclaw/workspace/skills`，通常由 OpenClaw/Clawhub 或 workspace bootstrap 安装。
+- Codex system 来源：`/home/ubuntu/.codex/skills/.system`，通常由 `npx codex` / Codex runtime 提供。
+- 现有 `skills/` 目录保持为本仓库 source-owned 的视频与内容技能，不混入 workspace runtime 辅助技能。
+
+详见：`xworkspace-core-skills/README.md`
 
 ## Examples
 
